@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-//import testData from '../data/test_data.json';
 import { useLocalStorage } from '../hooks/useLocalStorage.js';
 
 const AppContext = createContext({});
@@ -49,6 +48,7 @@ const useAppContextProvider = () => {
   const fetchData = async () => {
     // TODO: fetch all the required data and set it to the graphData state
     try {
+      setIsDataLoading(true);
       const [fiscalData, citizenshipData] = await Promise.all([getFiscalData(), getCitizenshipResults()]);
 
       if (fiscalData && citizenshipData) {
